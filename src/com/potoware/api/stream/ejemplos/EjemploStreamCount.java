@@ -4,17 +4,17 @@ import com.potoware.api.stream.ejemplos.models.Usuario;
 
 import java.util.stream.Stream;
 
-public class EjemploStreamAnyMatch {
+public class EjemploStreamCount {
 
     public static void main(String[] args) {
 
-        boolean existe = Stream
+        long count = Stream
                 .of("Pato Socio", "Paco Social", "Pepe Sociedad", "Pepa Sucio","Pepa Garcia")
                 .peek(System.out::println)
                 .map(nombre -> new Usuario(nombre.split(" ")[0], nombre.split(" ")[1]))
-                .anyMatch(u->u.getId().equals(1));
+                .count();
 
-        System.out.println(existe);
+        System.out.println(count);
 
     }
 }

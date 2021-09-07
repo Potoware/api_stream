@@ -2,20 +2,19 @@ package com.potoware.api.stream.ejemplos;
 
 import com.potoware.api.stream.ejemplos.models.Usuario;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
-public class EjemploStreamSingle2 {
+public class EjemploStreamAnyMatch {
 
     public static void main(String[] args) {
 
-        Usuario usuarios = Stream
+        boolean existe = Stream
                 .of("Pato Socio", "Paco Social", "Pepe Sociedad", "Pepa Sucio","Pepa Garcia")
                 .peek(System.out::println)
                 .map(nombre -> new Usuario(nombre.split(" ")[0], nombre.split(" ")[1]))
-                .filter(u->u.getId().equals(2)).findFirst().get();
+                .anyMatch(u->u.getId().equals(1));
 
-        System.out.println(usuarios);
+        System.out.println(existe);
 
     }
 }

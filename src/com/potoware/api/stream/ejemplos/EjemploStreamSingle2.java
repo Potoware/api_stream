@@ -11,8 +11,9 @@ public class EjemploStreamSingle2 {
 
         Usuario usuarios = Stream
                 .of("Pato Socio", "Paco Social", "Pepe Sociedad", "Pepa Sucio","Pepa Garcia")
+                .peek(System.out::println)
                 .map(nombre -> new Usuario(nombre.split(" ")[0], nombre.split(" ")[1]))
-                .filter(u->u.getId().equals(4)).findFirst().get();
+                .filter(u->u.getId().equals(2)).findFirst().get();
 
         System.out.println(usuarios);
 
