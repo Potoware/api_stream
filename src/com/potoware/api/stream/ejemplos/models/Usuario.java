@@ -1,5 +1,7 @@
 package com.potoware.api.stream.ejemplos.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Usuario {
@@ -10,6 +12,7 @@ public class Usuario {
     public Integer getId() {
         return id;
     }
+    private List<Factura> facturas;
 
     public void setId(Integer id) {
         this.id = id;
@@ -19,6 +22,7 @@ public class Usuario {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.id =++ultimoId;
+        this.facturas = new ArrayList<>();
     }
 
     public String getNombres() {
@@ -35,6 +39,23 @@ public class Usuario {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public static int getUltimoId() {
+        return ultimoId;
+    }
+
+    public static void setUltimoId(int ultimoId) {
+        Usuario.ultimoId = ultimoId;
+    }
+
+    public List<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void addFacturas(Factura facturas) {
+        this.facturas.add(facturas);
+        facturas.setUsuarioFactura(this);
     }
 
     @Override
