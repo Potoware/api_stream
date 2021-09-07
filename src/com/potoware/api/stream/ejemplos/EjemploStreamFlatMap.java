@@ -6,17 +6,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class EjemploStreamFilter {
+public class EjemploStreamFlatMap {
 
     public static void main(String[] args) {
 
         Stream<Usuario> usuarios = Stream
-                .of("Pato Socio", "Paco Social", "Pepe Sociedad", "Pepa Sucio","Pepa Garcia")
+                .of("Pato Socio", "Paco Social", "Pepe Sociedad", "Pepa Sucio","Pepa Garcia","pepe Garcia","pepe Garcia")
                 .map(nombre -> new Usuario(nombre.split(" ")[0], nombre.split(" ")[1]))
-                .filter(u->u.getNombres().equals("Pepe"))
+                .flatMap(u-> {
+                    if(u.getNombres().equals("pepe")){
+                        return Stream.of(u);
+                    }
+                    return Stream.empty();
+                })
                 .peek(u -> System.out.println(u.getNombres()));
-        List<Usuario> usuariosList = usuarios.collect(Collectors.toList());
 
-        usuariosList.forEach(u -> System.out.println(u.getApellidos()));
+
+        usuarios.forEach(u -> System.out.println(u.getApellidos()));
     }
 }
